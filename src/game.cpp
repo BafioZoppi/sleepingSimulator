@@ -45,3 +45,11 @@ void game::start()
 {
 	t = ofGetElapsedTimef();
 }
+
+bool game::keyPressed(int key)
+{
+	if (key == OF_KEY_ESC)
+		return false;
+	else
+		return true;
+}

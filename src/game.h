@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "menu.h"
 
 class game
 {
@@ -11,5 +12,6 @@ public:
 	void update();
 	void display();
 	void start();
+	bool keyPressed(int key);
 };
 
