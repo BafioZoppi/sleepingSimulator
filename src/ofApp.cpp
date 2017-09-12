@@ -5,9 +5,14 @@ int MENU = 1;
 int status = MENU;
 int selected = 0;
 string menu[3] = { "GIOCA", "IMPOSTAZIONI", "ESCI" };
+int statusOld = status;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofSetFrameRate(60);
+	ofSetVerticalSync(true);
+	FreeConsole();
+	ofHideCursor();
 	bigFont.load("Helvetica-Regular.ttf", 20);
 	smallFont.load("Helvetica-Regular.ttf", 16);
 	ofSetEscapeQuitsApp(false);
@@ -15,6 +20,14 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	if (status == GAME) {
+		if (statusOld != GAME) {
+			Game.start();
+		}
+		Game.update();
+	}
+
+	statusOld = status;
 }
 
 //--------------------------------------------------------------
@@ -33,6 +46,9 @@ void ofApp::draw(){
 			else
 				smallFont.drawString(menu[i], 100, 200 + i * 100);
 		}
+	}
+	else if (status == GAME) {
+		Game.display();
 	}
 }
 
@@ -66,7 +82,9 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+	//glfwSetCursorPos(ofGetWidth() / 2, ofGetHeight() / 2);
+	//Game.mouseMoved(x - ofGetWidth(), y - ofGetHeight());
+	Game.mouseMoved(x, y);
 }
 
 //--------------------------------------------------------------

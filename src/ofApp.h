@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "game.h"
 
 class ofApp : public ofBaseApp{
 
@@ -22,4 +23,5 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 	
 		ofTrueTypeFont bigFont, smallFont;
+		game Game;
 };
