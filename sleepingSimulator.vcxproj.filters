@@ -24,6 +24,9 @@
     <ClCompile Include="src\menu.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\loading.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -33,6 +36,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\menu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\loading.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

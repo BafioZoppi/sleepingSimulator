@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "game.h"
 #include "menu.h"
+#include "loading.h"
 
 class ofApp : public ofBaseApp{
 
@@ -16,4 +17,5 @@ class ofApp : public ofBaseApp{
 
 		game Game;
 		menu Menu;
+		loading Loading;
 };

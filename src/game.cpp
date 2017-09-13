@@ -2,8 +2,6 @@
 
 int t = 0;
 int X, Y;
-float l = 1;
-float k = 0.007;
 float alpha = 0, beta = 0;
 ofCamera camera;
 ofVec3f up, look;

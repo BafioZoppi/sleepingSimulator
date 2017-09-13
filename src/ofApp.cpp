@@ -2,6 +2,7 @@
 
 int GAME = 0;
 int MENU = 1;
+int LOADING = 2;
 int status = MENU;
 int statusOld = status;
 
@@ -19,16 +20,20 @@ void ofApp::update(){
 		Game.update();
 	else if (status == MENU)
 		Menu.update();
+	else if (status == LOADING) {
+		if (!Loading.update())
+			status = GAME;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	if (status == MENU) {
+	if (status == MENU)
 		Menu.display();
-	}
-	else if (status == GAME) {
+	else if (status == GAME)
 		Game.display();
-	}
+	else if (status == LOADING)
+		Loading.display();
 }
 
 //--------------------------------------------------------------
@@ -39,8 +44,8 @@ void ofApp::keyPressed(int key){
 		selection = Menu.keyPressed(key);
 
 		if (selection == menu::GAME) {
-			Game.start();
-			status = GAME;
+			Loading.start();
+			status = LOADING;
 		}
 		else if (selection == menu::EXIT) {
 			OF_EXIT_APP(0);
