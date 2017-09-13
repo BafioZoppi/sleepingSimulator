@@ -1,13 +1,18 @@
 #include "game.h"
 
-int t = 0;
+float t1 = 0;
+float t;
 int X, Y;
 float alpha = 0, beta = 0;
+float blinkDuration = 10;
+float blinkPerc;
 ofCamera camera;
 ofVec3f up, look;
+ofFbo fbo;
 
 game::game()
 {
+	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 4);
 	up = ofVec3f(0, 1, 0);
 	look = ofVec3f(0, 0, -1);
 }
@@ -29,19 +34,44 @@ void game::update()
 	beta = ofMap(Y, 0, ofGetHeight(), -HALF_PI, HALF_PI, true);
 	look = ofVec3f(sin(alpha), sin(-beta), -1);
 	look.normalize();
+	t = ofGetElapsedTimef() - t1;
+	blinkPerc = t / blinkDuration;
 }
 
 void game::display()
 {
-	camera.begin();
-	camera.lookAt(look, up);
-	ofBox(0, 10, -100, 50);
-	camera.end();
+	if (t > blinkDuration)
+		ofBackground(0);
+	else {
+		fbo.begin();
+		ofClear(255, 255, 255);
+		camera.begin();
+		ofBackground(255);
+		camera.lookAt(look, up);
+		ofSetColor(0, 255, 0);
+		ofBox(0, 10, -100, 50);
+		camera.end();
+		blink();
+		fbo.end();
+		fbo.draw(0, 0);
+	}
+}
+
+void game::blink()
+{
+	ofSetColor(0);
+	ofRectangle b(0, 0, ofGetWidth(), (ofGetHeight() / 2) * blinkPerc);
+	ofRect(b);
+	ofPushMatrix();
+	ofTranslate(0, ofGetHeight() - b.height);
+	ofRect(b);
+	ofPopMatrix();
+	ofSetColor(255);
 }
 
 void game::start()
 {
-	t = ofGetElapsedTimef();
+	t1 = ofGetElapsedTimef();
 }
 
 bool game::keyPressed(int key)

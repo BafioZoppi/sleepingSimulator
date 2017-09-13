@@ -21,8 +21,10 @@ void ofApp::update(){
 	else if (status == MENU)
 		Menu.update();
 	else if (status == LOADING) {
-		if (!Loading.update())
+		if (!Loading.update()) {
 			status = GAME;
+			Game.start();
+		}
 	}
 }
 

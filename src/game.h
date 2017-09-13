@@ -8,6 +8,7 @@ public:
 	game();
 	~game();
 	void mouseMoved(int x, int y);
+	void blink();
 	void update();
 	void display();
 	void start();
