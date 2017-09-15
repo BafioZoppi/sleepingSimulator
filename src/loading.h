@@ -11,5 +11,10 @@ public:
 	void display();
 	void start();
 
+private:
+	float frac, t0;
+	float duration;
+	float l, h, b;
+	string text;
 	ofTrueTypeFont font;
 };

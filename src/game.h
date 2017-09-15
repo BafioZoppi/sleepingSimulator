@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "constants.h"
 
 class game
 {
@@ -12,6 +13,17 @@ public:
 	void update();
 	void display();
 	void start();
+	void pause();
+	void unPause();
 	bool keyPressed(int key);
+
+private:
+	float t, t0, dt;
+	int X, Y;
+	float alpha, beta;
+	float blinkDuration, blinkPerc;
+	ofCamera camera;
+	ofVec3f up, look;
+	ofFbo fbo;
 };
 

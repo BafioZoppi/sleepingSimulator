@@ -1,12 +1,13 @@
 #include "loading.h"
 
-float frac, t0;
-float duration = 5;
-float l = 1000, h = 50, b = 5;
-
 loading::loading()
 {
+	duration = 5;
+	l = 1000;
+	h = 50;
+	b = 5;
 	font.load("Helvetica-Regular.ttf", 20);
+	text = "LOADING";
 }
 
 loading::~loading()
@@ -34,7 +35,7 @@ void loading::display()
 	ofBackground(0);
 	ofSetColor(255);
 
-	font.drawString("CARICAMENTO", 200, 300);
+	font.drawString(text, 200, 300);
 
 	ofNoFill();
 	ofDrawRectangle(200, 400, l, h);

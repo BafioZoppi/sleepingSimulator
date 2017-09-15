@@ -27,6 +27,12 @@
     <ClCompile Include="src\loading.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\constants.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\settings.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
@@ -41,5 +47,14 @@
     <ClInclude Include="src\loading.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\constants.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\settings.ini" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "constants.h"
 
 class menu
 {
@@ -12,7 +13,8 @@ public:
 	void start();
 	int keyPressed(int key);
 
-	static int GAME, SETTINGS, EXIT;
-
+private:
 	ofTrueTypeFont bigFont, smallFont;
+	string title[4];
+	int selected, selections;
 };

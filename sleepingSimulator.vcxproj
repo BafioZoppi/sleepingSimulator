@@ -187,17 +187,24 @@
     <Font Include="bin\data\Helvetica-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\constants.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\loading.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\menu.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\settings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\loading.h" />
     <ClInclude Include="src\menu.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\settings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\settings.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

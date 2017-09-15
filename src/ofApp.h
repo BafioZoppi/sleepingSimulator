@@ -4,6 +4,7 @@
 #include "game.h"
 #include "menu.h"
 #include "loading.h"
+#include "constants.h"
 
 class ofApp : public ofBaseApp{
 
@@ -15,7 +16,9 @@ class ofApp : public ofBaseApp{
 		void keyPressed(int key);
 		void mouseMoved(int x, int y );
 
+	private:
 		game Game;
 		menu Menu;
 		loading Loading;
+		int status;
 };

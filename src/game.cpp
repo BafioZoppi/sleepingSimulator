@@ -1,17 +1,10 @@
 #include "game.h"
 
-float t1 = 0;
-float t;
-int X, Y;
-float alpha = 0, beta = 0;
-float blinkDuration = 10;
-float blinkPerc;
-ofCamera camera;
-ofVec3f up, look;
-ofFbo fbo;
-
 game::game()
 {
+	alpha = 0;
+	beta = 0;
+	blinkDuration = 10;
 	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 4);
 	up = ofVec3f(0, 1, 0);
 	look = ofVec3f(0, 0, -1);
@@ -34,7 +27,7 @@ void game::update()
 	beta = ofMap(Y, 0, ofGetHeight(), -HALF_PI, HALF_PI, true);
 	look = ofVec3f(sin(alpha), sin(-beta), -1);
 	look.normalize();
-	t = ofGetElapsedTimef() - t1;
+	t = ofGetElapsedTimef() - t0;
 	blinkPerc = t / blinkDuration;
 }
 
@@ -71,7 +64,18 @@ void game::blink()
 
 void game::start()
 {
-	t1 = ofGetElapsedTimef();
+	t0 = ofGetElapsedTimef();
+	constants::isRunning = true;
+}
+
+void game::pause()
+{
+	dt = ofGetElapsedTimef() - t0;
+}
+
+void game::unPause()
+{
+	t0 = ofGetElapsedTimef() - dt;
 }
 
 bool game::keyPressed(int key)
