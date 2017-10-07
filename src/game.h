@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "constants.h"
-#include "ofxAssimpModelLoader.h"
 
 class game
 {
@@ -10,7 +9,6 @@ public:
 	game();
 	~game();
 	void mouseMoved(int x, int y);
-	void blink();
 	void update();
 	void display();
 	void start();
@@ -26,6 +24,8 @@ private:
 	ofCamera camera;
 	ofVec3f up, look;
 	ofFbo fbo;
-	ofxAssimpModelLoader room;
+	void drawRoom();
+	void blink();
+	ofMesh room;
 };
 

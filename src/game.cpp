@@ -8,7 +8,18 @@ game::game()
 	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 4);
 	up = ofVec3f(0, 1, 0);
 	look = ofVec3f(0, 0, -1);
-	room.loadModel("Dave Room/Dave Room.c4d");
+
+	int roomSize[3] = { 1000, -1000, 1000 };
+	room.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+	room.addVertex(ofVec3f(-roomSize[0], roomSize[1], roomSize[2]));
+	room.addVertex(ofVec3f(roomSize[0], 0, roomSize[2]));
+	room.addVertex(ofVec3f(roomSize[0], roomSize[1], roomSize[2]));
+	room.addVertex(ofVec3f(roomSize[0], 0, 0));
+	room.addVertex(ofVec3f(roomSize[0], roomSize[1], 0));
+	room.addVertex(ofVec3f(-roomSize[0], 0, 0));
+	room.addVertex(ofVec3f(-roomSize[0], roomSize[1], 0));
+	room.addVertex(ofVec3f(-roomSize[0], 0, roomSize[2]));
+	room.addVertex(ofVec3f(-roomSize[0], roomSize[1], roomSize[2]));
 }
 
 
@@ -42,19 +53,33 @@ void game::display()
 		ofClear(255, 255, 255);
 		camera.begin();
 		ofBackground(255);
+		drawRoom();
 		camera.lookAt(look, up);
-		ofSetColor(0, 255, 0);
-		ofBox(0, 10, -100, 50);
 		camera.end();
-		blink();
+		//blink();
 		fbo.end();
 		fbo.draw(0, 0);
 	}
 	*/
-	ofBackground(50, 50, 50, 0);
-	ofSetColor(255, 255, 255, 255);
-	room.setPosition(ofGetWidth() / 2, (float)ofGetHeight() * 0.75, 0);
-	room.drawFaces();
+
+	fbo.begin();
+	ofClear(255, 255, 255);
+	camera.begin();
+	ofBackground(255);
+	drawRoom();
+	camera.lookAt(look, up);
+	camera.end();
+	//blink();
+	fbo.end();
+	fbo.draw(0, 0);
+}
+
+void game::drawRoom()
+{
+	ofSetColor(0, 255, 0);
+	ofPushMatrix();
+	ofTranslate(0,0,-500);
+	room.draw();
 }
 
 void game::blink()

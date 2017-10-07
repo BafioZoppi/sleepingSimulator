@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "constants.h"
-#include <iostream>
 
 class menu
 {

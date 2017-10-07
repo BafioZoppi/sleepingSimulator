@@ -2,7 +2,7 @@
 
 loading::loading()
 {
-	duration = 5;
+	duration = 0;
 	l = 1000;
 	h = 50;
 	b = 5;

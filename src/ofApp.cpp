@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofEnableDepthTest();
 	status = constants::MENU;
 	//FreeConsole();
 	ofHideCursor();
