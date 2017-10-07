@@ -8,6 +8,7 @@ game::game()
 	fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 4);
 	up = ofVec3f(0, 1, 0);
 	look = ofVec3f(0, 0, -1);
+	room.loadModel("Dave Room/Dave Room.c4d");
 }
 
 
@@ -33,6 +34,7 @@ void game::update()
 
 void game::display()
 {
+	/*
 	if (t > blinkDuration)
 		ofBackground(0);
 	else {
@@ -48,6 +50,11 @@ void game::display()
 		fbo.end();
 		fbo.draw(0, 0);
 	}
+	*/
+	ofBackground(50, 50, 50, 0);
+	ofSetColor(255, 255, 255, 255);
+	room.setPosition(ofGetWidth() / 2, (float)ofGetHeight() * 0.75, 0);
+	room.drawFaces();
 }
 
 void game::blink()

@@ -8,5 +8,7 @@ public:
 	static const int EXIT;
 	static const int MENU;
 	static const int LOADING;
+	static const int width;
+	static const int height;
 	static bool isRunning;
 };

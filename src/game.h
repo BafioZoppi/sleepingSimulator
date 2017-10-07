@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "constants.h"
+#include "ofxAssimpModelLoader.h"
 
 class game
 {
@@ -25,5 +26,6 @@ private:
 	ofCamera camera;
 	ofVec3f up, look;
 	ofFbo fbo;
+	ofxAssimpModelLoader room;
 };
 

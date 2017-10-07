@@ -4,12 +4,34 @@ menu::menu()
 {
 	selected = constants::GAME;
 	selections = 4;
-	title[0] = "CONTINUE";
-	title[1] = "NEW GAME";
-	title[2] = "SETTINGS";
-	title[3] = "EXIT";
-	bigFont.load("Helvetica-Regular.ttf", 20);
-	smallFont.load("Helvetica-Regular.ttf", 16);
+	titleFileName = "Title";
+	ext = ".png";
+	menuFileName[0] = "Continue";
+	menuFileName[1] = "New Game";
+	menuFileName[2] = "Options";
+	menuFileName[3] = "Exit";
+	imageFolder = "Menu/";
+
+	scale = float(ofGetHeight()) / constants::height;
+	newWidth = scale * constants::width;
+
+	titleImage.load(imageFolder + titleFileName + ext);
+	titleImage.resize(newWidth, scale * titleImage.getHeight());
+
+	offset = (ofGetWidth() - titleImage.getWidth()) / 2;
+
+	for (int i = 0; i < selections; i++) {
+		selection[i] = new ofImage(imageFolder + menuFileName[i] + "-s" + ext);
+		selection[i]->resize(newWidth, scale * selection[i]->getHeight());
+
+		normal[i] = new ofImage(imageFolder + menuFileName[i] + ext);
+		normal[i]->resize(newWidth, scale * normal[i]->getHeight());
+	}
+
+	notSelectable = new ofImage(imageFolder + menuFileName[0] + "-n" + ext);
+	notSelectable->resize(newWidth, scale * notSelectable->getHeight());
+
+	cout << ofGetHeight();
 }
 
 menu::~menu()
@@ -18,38 +40,29 @@ menu::~menu()
 
 void menu::update()
 {
+	if (!constants::isRunning)
+		menuImage[0] = notSelectable;
+	else if (selected == constants::CONTINUE)
+		menuImage[0] = selection[0];
+	else
+		menuImage[0] = normal[0];
+
+	for (int i = 1; i < selections; i++) {
+		if (selected == i)
+			menuImage[i] = selection[i];
+		else
+			menuImage[i] = normal[i];
+	}
 }
 
 void menu::display()
 {
 	ofBackground(0);
-	ofSetColor(255);
-
-	bigFont.drawString("SLEEPING SIMULATOR", 100, 100);
-
-	if (constants::isRunning) {
-		if (selected == constants::CONTINUE) {
-			ofSetColor(0, 255, 0);
-			smallFont.drawString(title[0], 100, 200);
-			ofSetColor(255);
-		}
-		else
-			smallFont.drawString(title[0], 100, 200);
-	}
-	else {
-		ofSetColor(128);
-		smallFont.drawString(title[0], 100, 200);
-		ofSetColor(255);
-	}
-
-	for (int i = 1; i < selections; i++) {
-		if (selected == i) {
-			ofSetColor(0, 255, 0);
-			smallFont.drawString(title[i], 100, 200 + i * 100);
-			ofSetColor(255);
-		}
-		else
-			smallFont.drawString(title[i], 100, 200 + i * 100);
+	titleImage.draw(offset, 0);
+	float yOffset = titleImage.getHeight();
+	for (int i = 0; i < selections; i++) {
+		menuImage[i]->draw(offset, yOffset);
+		yOffset += menuImage[i]->getHeight();
 	}
 }
 

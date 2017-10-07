@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	status = constants::MENU;
-	FreeConsole();
+	//FreeConsole();
 	ofHideCursor();
 	ofSetEscapeQuitsApp(false);
 	Menu.start();
